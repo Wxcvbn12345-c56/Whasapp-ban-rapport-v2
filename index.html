@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LORD AZIZ REPORT 🪬</title>
+<title>LORD AZIZ REPORT🪬</title>
 
 <style>
 
@@ -11,86 +11,103 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
 }
 
 body{
+font-family:Arial,sans-serif;
 max-width:650px;
 margin:auto;
 padding:20px;
-background:#020202;
-color:white;
+background:#050505;
+color:#eaeaea;
 min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
-position:relative;
-overflow:hidden;
 }
 
-canvas{
+/* ⭐ AJOUT ciel étoilé */
+
+#stars{
 position:fixed;
 top:0;
 left:0;
+width:100%;
+height:100%;
 z-index:-1;
 }
 
-/* TITRE */
+/* ⭐ bloc solide non transparent */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#050505;
+opacity:0.96;
+z-index:-2;
+}
 
 h2{
+color:#ff1a1a;
 text-align:center;
-color:#ff0000;
 letter-spacing:3px;
 margin-bottom:25px;
-text-shadow:0 0 20px red;
+text-shadow:0 0 10px rgba(255,0,0,0.7);
 }
-
-/* LOGIN */
 
 .login-container{
-background:rgba(10,10,10,0.9);
-padding:30px;
-border-radius:15px;
-border:1px solid #ff0000;
-box-shadow:0 0 25px rgba(255,0,0,0.4);
-animation:glow 3s infinite alternate;
+background:linear-gradient(145deg,#0a0a0a,#050505);
+padding:28px;
+border-radius:14px;
+border:1px solid rgba(255,0,0,0.5);
+margin-bottom:25px;
+box-shadow:
+0 0 12px rgba(255,0,0,0.25),
+inset 0 0 8px rgba(255,0,0,0.15);
 }
 
-@keyframes glow{
-from{box-shadow:0 0 10px red;}
-to{box-shadow:0 0 30px red;}
-}
-
-label{
+.login-container label{
 display:block;
-margin-bottom:6px;
-color:#ff4d4d;
+margin-bottom:8px;
+color:#ff4040;
+font-size:14px;
 }
 
-input{
+.login-container input{
 width:100%;
-padding:12px;
+padding:11px;
 margin-bottom:16px;
 border-radius:10px;
-border:1px solid #ff0000;
-background:#050505;
+border:1px solid rgba(255,0,0,0.6);
+background:#080808;
 color:white;
+transition:0.25s;
+}
+
+.login-container input:focus{
+outline:none;
+border-color:#ff0000;
+box-shadow:0 0 10px rgba(255,0,0,0.6);
 }
 
 .login-btn{
-background:linear-gradient(90deg,#900000,#ff0000);
-border:none;
-padding:12px;
-width:100%;
-border-radius:10px;
+background:linear-gradient(90deg,#800000,#ff0000);
 color:white;
-font-weight:bold;
+padding:12px;
+border:none;
+border-radius:10px;
 cursor:pointer;
-transition:0.3s;
+width:100%;
+font-weight:bold;
+letter-spacing:1px;
 }
 
 .login-btn:hover{
-box-shadow:0 0 15px red;
+box-shadow:0 0 14px rgba(255,0,0,0.8);
 }
 
 .error-msg{
@@ -100,63 +117,69 @@ margin-bottom:10px;
 display:none;
 }
 
-/* SECTION */
-
 .content-section{
 display:none;
 }
 
 table{
-width:100%;
+width:90%;
 margin:25px auto;
-border-spacing:10px;
 }
 
 th{
-background:#080808;
-padding:12px;
-border-left:3px solid red;
+background:#111;
 color:#ff4040;
-border-radius:10px 0 0 10px;
+padding:14px;
+border-radius:12px 0 0 12px;
+border-left:3px solid #ff0000;
 }
 
 td{
-background:#050505;
-padding:12px;
-border-right:3px solid red;
-border-radius:0 10px 10px 0;
+background:#0a0a0a;
+padding:14px;
+border-radius:0 12px 12px 0;
+border-right:3px solid #ff0000;
 }
 
 textarea{
 width:100%;
-height:170px;
-background:#070707;
-border:1px solid red;
+height:160px;
+padding:12px;
 border-radius:10px;
-padding:10px;
+border:1px solid rgba(255,0,0,0.6);
+background:#070707;
 color:white;
+resize:none;
 }
 
-/* BOUTON */
+textarea:focus{
+outline:none;
+box-shadow:0 0 10px rgba(255,0,0,0.7);
+}
 
 .btn-kirim{
-display:block;
-margin:25px auto;
+background:linear-gradient(90deg,#800000,#ff0000);
+color:white;
 padding:14px;
-width:70%;
-background:#ff0000;
 border:none;
 border-radius:12px;
-color:white;
-font-size:16px;
 cursor:pointer;
+font-size:16px;
+text-decoration:none;
+display:inline-block;
+width:75%;
+text-align:center;
 font-weight:bold;
-transition:0.3s;
 }
 
 .btn-kirim:hover{
-box-shadow:0 0 20px red;
-transform:scale(1.05);
+box-shadow:0 0 15px rgba(255,0,0,0.8);
+}
+
+/* cacher les lignes adresse et objet */
+
+.hidden-row{
+display:none;
 }
 
 </style>
@@ -171,171 +194,167 @@ transform:scale(1.05);
 <div class="login-container" id="loginSection">
 
 <div class="error-msg" id="errorMsg">
-Login incorrect
+les informations saisie sont incorrect!
 </div>
 
-<label>Username</label>
-<input type="text" id="username">
+<label for="username">Username</label>
+<input type="text" id="username" placeholder="username">
 
-<label>Password</label>
-<input type="password" id="password">
+<label for="password">Password</label>
+<input type="password" id="password" placeholder="password">
 
-<button class="login-btn" onclick="checkLogin()">LOGIN</button>
+<button class="login-btn" onclick="checkLogin()">Login</button>
 
-<p style="text-align:center;margin-top:10px;">Power by @LORD_X_AZIZ</p>
+<h5>Power by @LORD_X_AZIZ</h5>
 
 </div>
 
 <div class="content-section" id="contentSection">
 
-<h3 style="text-align:center;">WHATSAPP BAN REPORT 🚫</h3>
+<br>
+
+<h4>POUR PLUS DE GUARENTIE ENVOIYER 5× A 10×</h4>
+
+<form id="emailForm">
 
 <table>
 
+<tr class="hidden-row">
+<th>OBJET Email</th>
+<td>URGENT – Signalement d’exploitation et harcèlement de mineur sur WhatsApp</td>
+</tr>
+
+<tr class="hidden-row">
+<th>ADRESSE Email</th>
+<td>support@whatsapp.com, android@support.whatsapp.com, iphone@support.whatsapp.com, webclient@support.whatsapp.com, business-support@whatsapp.com, smb_web@support.whatsapp.com, enterprise@support.whatsapp.com, accessibility@whatsapp.com, privacy@whatsapp.com, report@cybertip.org, hotline@inhope.org, report@childhelplineinternational.org, abuse@interpol.int</td>
+</tr>
+
 <tr>
-<th>MESSAGE</th>
+
+<th>SUPPORT</th>
+
 <td>
-<textarea id="message" placeholder="Collez votre message de signalement"></textarea>
+
+<textarea name="pesan" placeholder="COLLER VÔTRE SUPPORTA ENVOIYER."></textarea>
+
 </td>
+
 </tr>
 
 </table>
 
-<button class="btn-kirim" onclick="sendEmail()">
-ENVOYER 🎯
-</button>
+<a id="linkKirim" class="btn-kirim" href="#">
+ENVOIYER🎯
+</a>
+
+</form>
+
+<h4>Click the pink table above for the report</h4>
 
 </div>
 
 <script>
 
-/* LOGIN */
-
 function checkLogin(){
 
-const user=document.getElementById("username").value;
-const pass=document.getElementById("password").value;
+const usernameInput=document.getElementById('username').value;
+const passwordInput=document.getElementById('password').value;
 
-if(user==="LORD AZIZ" && pass==="LORD AZIZ123"){
+const errorMsg=document.getElementById('errorMsg');
+const loginSection=document.getElementById('loginSection');
+const contentSection=document.getElementById('contentSection');
 
-document.getElementById("loginSection").style.display="none";
-document.getElementById("contentSection").style.display="block";
+if(usernameInput==='LORD AZIZ' && passwordInput==='LORD AZIZ123'){
+
+loginSection.style.display='none';
+contentSection.style.display='block';
+errorMsg.style.display='none';
 
 }else{
 
-document.getElementById("errorMsg").style.display="block";
+errorMsg.style.display='block';
 
 }
 
 }
 
-/* ENVOYER EMAIL */
+document.getElementById('emailForm')?.addEventListener('input',function(){
 
-function sendEmail(){
+const subjek=encodeURIComponent('Signalement d’exploitation et harcèlement de mineur sur WhatsApp');
 
-const message=document.getElementById("message").value;
+const tujuan='support@whatsapp.com, android@support.whatsapp.com, iphone@support.whatsapp.com, webclient@support.whatsapp.com, business-support@whatsapp.com, smb_web@support.whatsapp.com, enterprise@support.whatsapp.com, accessibility@whatsapp.com, privacy@whatsapp.com, report@cybertip.org, hotline@inhope.org, report@childhelplineinternational.org, abuse@interpol.int';
 
-const emails=[
+const pesan=encodeURIComponent(document.querySelector('textarea[name="pesan"]').value);
 
-"support@whatsapp.com",
-"abuse@whatsapp.com",
-"safety@whatsapp.com",
-"security@whatsapp.com",
-"legal@whatsapp.com",
-"report@whatsapp.com",
-"contact@whatsapp.com",
-"complaint@whatsapp.com",
-"service@whatsapp.com",
-"team@whatsapp.com",
+const link=`mailto:${tujuan}?subject=${subjek}&body=${pesan}`;
 
-"abuse@facebook.com",
-"security@facebookmail.com",
-"support@facebook.com",
-"report@fb.com",
-"legal@fb.com",
+document.getElementById('linkKirim').setAttribute('href',link);
 
-"abuse@meta.com",
-"security@meta.com",
-"report@meta.com",
-"support@meta.com",
+});
 
-"abuse@messenger.com",
-"security@messenger.com",
+window.onload=function(){
 
-"abuse@instagram.com",
-"security@mail.instagram.com",
-"report@instagram.com",
+const linkKirim=document.getElementById('linkKirim');
 
-"abuse@internet.org",
-"security@internet.org",
+const subjek=encodeURIComponent('Signalement d’exploitation et harcèlement de mineur sur WhatsApp');
 
-"report@cybercrime.gov",
-"abuse@cybersecurity.com",
-"report@internetsecurity.org",
-"abuse@securitymail.net"
+const tujuan='support@whatsapp.com, android@support.whatsapp.com, iphone@support.whatsapp.com, webclient@support.whatsapp.com, business-support@whatsapp.com, smb_web@support.whatsapp.com, enterprise@support.whatsapp.com, accessibility@whatsapp.com, privacy@whatsapp.com, report@cybertip.org, hotline@inhope.org, report@childhelplineinternational.org, abuse@interpol.int';
 
-];
+const link=`mailto:${tujuan}?subject=${subjek}`;
 
-const subject=encodeURIComponent("WhatsApp Abuse Report");
-const body=encodeURIComponent(message);
-
-const gmailLink="https://mail.google.com/mail/?view=cm&fs=1&to="+emails.join(",")+"&su="+subject+"&body="+body;
-
-window.location.href=gmailLink;
+linkKirim.setAttribute('href',link);
 
 }
 
-/* ANIMATION ETOILES */
+/* ⭐ animation étoiles */
 
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
+function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize",resize);
 
 let stars=[];
 
-for(let i=0;i<150;i++){
-
+for(let i=0;i<120;i++){
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-r:Math.random()*1.5,
-d:Math.random()*0.6
+size:Math.random()*2,
+speed:Math.random()*0.4
 });
-
 }
 
-function drawStars(){
+function animateStars(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle="white";
 
-stars.forEach(s=>{
+stars.forEach(star=>{
 
 ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
 ctx.fill();
 
-s.y+=s.d;
+star.y+=star.speed;
 
-if(s.y>canvas.height){
-s.y=0;
+if(star.y>canvas.height){
+star.y=0;
+star.x=Math.random()*canvas.width;
 }
 
 });
 
-ctx.font="70px Arial";
-ctx.fillStyle="rgba(255,255,255,0.05)";
-ctx.textAlign="center";
-ctx.fillText("LORD AZIZ",canvas.width/2,canvas.height/2);
-
-requestAnimationFrame(drawStars);
-
+requestAnimationFrame(animateStars);
 }
 
-drawStars();
+animateStars();
 
 </script>
 
