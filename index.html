@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LORD AZIZ REPORT🪬</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+max-width:650px;
+margin:auto;
+padding:20px;
+background:#050505;
+color:#eaeaea;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+position:relative;
+overflow-x:hidden;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+h2{
+color:#ff1a1a;
+text-align:center;
+letter-spacing:3px;
+margin-bottom:25px;
+text-shadow:0 0 10px rgba(255,0,0,0.8);
+}
+
+.login-container{
+background:rgba(10,10,10,0.9);
+padding:28px;
+border-radius:14px;
+border:1px solid rgba(255,0,0,0.5);
+margin-bottom:25px;
+box-shadow:0 0 12px rgba(255,0,0,0.25);
+}
+
+.login-container label{
+display:block;
+margin-bottom:8px;
+color:#ff4040;
+}
+
+.login-container input{
+width:100%;
+padding:11px;
+margin-bottom:16px;
+border-radius:10px;
+border:1px solid rgba(255,0,0,0.6);
+background:#080808;
+color:white;
+}
+
+.login-btn{
+background:linear-gradient(90deg,#800000,#ff0000);
+color:white;
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+width:100%;
+font-weight:bold;
+}
+
+.error-msg{
+color:#ff3333;
+text-align:center;
+margin-bottom:10px;
+display:none;
+}
+
+.content-section{
+display:none;
+}
+
+table{
+width:90%;
+margin:25px auto;
+border-spacing:10px;
+}
+
+/* COLONNES 3D */
+
+th{
+background:linear-gradient(145deg,#111,#000);
+color:#ff4040;
+padding:14px;
+border-radius:12px 0 0 12px;
+border-left:3px solid #ff0000;
+
+box-shadow:
+inset 0 2px 5px rgba(255,255,255,0.1),
+inset 0 -3px 8px rgba(0,0,0,0.9),
+0 8px 20px rgba(255,0,0,0.4);
+}
+
+td{
+background:linear-gradient(145deg,#050505,#000);
+padding:14px;
+border-radius:0 12px 12px 0;
+border-right:3px solid #ff0000;
+
+box-shadow:
+inset 0 2px 5px rgba(255,255,255,0.05),
+inset 0 -3px 8px rgba(0,0,0,0.9),
+0 8px 20px rgba(255,0,0,0.4);
+}
+
+textarea{
+width:100%;
+height:160px;
+padding:12px;
+border-radius:10px;
+border:1px solid rgba(255,0,0,0.6);
+background:#070707;
+color:white;
+resize:none;
+}
+
+.btn-kirim{
+display:block;
+margin:20px auto;
+background:#ff3333;
+color:white;
+padding:14px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+text-decoration:none;
+width:70%;
+text-align:center;
+font-weight:bold;
+box-shadow:0 0 12px #ff3333;
+}
+
+.upload-btn{
+display:inline-block;
+padding:12px 18px;
+background:#111;
+border:1px solid #444;
+border-radius:10px;
+cursor:pointer;
+color:white;
+}
+
+.image-status{
+margin-top:10px;
+}
+
+.dot{
+height:12px;
+width:12px;
+background:#333;
+border-radius:50%;
+display:inline-block;
+margin-right:6px;
+}
+
+.dot.active{
+background:#0099ff;
+box-shadow:0 0 10px #0099ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<h2>LORD AZIZ REPORT 🪬</h2>
+
+<div class="login-container" id="loginSection">
+
+<div class="error-msg" id="errorMsg">
+les informations saisie sont incorrect!
+</div>
+
+<label>Username</label>
+<input type="text" id="username">
+
+<label>Password</label>
+<input type="password" id="password">
+
+<button class="login-btn" onclick="checkLogin()">Login</button>
+
+<h5>Power by @LORD_X_AZIZ</h5>
+
+</div>
+
+<div class="content-section" id="contentSection">
+
+<h4 style="text-align:center;">WHATSAPP BAN REPORT 🚫</h4>
+
+<form id="emailForm">
+
+<table>
+
+<tr>
+<th>SUPPORT</th>
+<td>
+<textarea name="pesan" placeholder="COLLER VÔTRE SUPPORT A ENVOYER."></textarea>
+</td>
+</tr>
+
+<tr>
+<th>IMAGE</th>
+<td>
+
+<label class="upload-btn">
+Sélectionner une image
+<input type="file" id="imageInput" accept="image/*" multiple hidden>
+</label>
+
+<div class="image-status">
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+</div>
+
+</td>
+</tr>
+
+</table>
+
+<a id="linkKirim" class="btn-kirim" href="#">
+ENVOIYER🎯
+</a>
+
+</form>
+
+</div>
+
+<script>
+
+function checkLogin(){
+
+const username=document.getElementById('username').value;
+const password=document.getElementById('password').value;
+
+if(username==='LORD AZIZ' && password==='LORD AZIZ123'){
+
+document.getElementById('loginSection').style.display='none';
+document.getElementById('contentSection').style.display='block';
+
+}else{
+
+document.getElementById('errorMsg').style.display='block';
+
+}
+
+}
+
+/* animation étoiles */
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+
+for(let i=0;i<120;i++){
+
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*1.5,
+d:Math.random()*0.5
+});
+
+}
+
+function drawStars(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(s=>{
+
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+
+s.y+=s.d;
+
+if(s.y>canvas.height){
+s.y=0;
+}
+
+});
+
+ctx.font="80px Arial";
+ctx.fillStyle="rgba(255,255,255,0.08)";
+ctx.textAlign="center";
+ctx.fillText("LORD AZIZ",canvas.width/2,canvas.height/2);
+
+requestAnimationFrame(drawStars);
+
+}
+
+drawStars();
+
+</script>
+
+</body>
+</html>
